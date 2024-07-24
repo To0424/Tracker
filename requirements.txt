@@ -5,4 +5,4 @@ asyncpg
 sqlalchemy
 psycopg2-binary
 paho-mqtt
-google-cloud-sql
+requests
