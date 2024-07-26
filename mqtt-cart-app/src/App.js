@@ -31,6 +31,7 @@ const App = () => {
           if (!exists) {
             const updatedData = [...prevData, newData];
             localStorage.setItem('cartData', JSON.stringify(updatedData));
+            console.log(updatedData);
             return updatedData;
           }
 

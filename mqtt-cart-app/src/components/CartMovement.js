@@ -14,8 +14,6 @@ const CartMovement = ({ data }) => {
       backgroundColor: 'blue',
     }]
   });
-  const bgImageRef = useRef(null);
-  const cartImageRef = useRef(null);
   const autoPullTimeout = useRef(null);
 
   useEffect(() => {
@@ -78,47 +76,6 @@ const CartMovement = ({ data }) => {
   };
 
   useEffect(() => {
-    // Preload images
-    const bgImg = new Image();
-    bgImg.src = '/bg-image.png';
-    bgImg.onload = () => {
-      bgImageRef.current = bgImg;
-    };
-
-    const cartImg = new Image();
-    cartImg.src = '/cart-image.png';
-    cartImg.onload = () => {
-      cartImageRef.current = cartImg;
-    };
-  }, []);
-
-  const backgroundPlugin = {
-    id: 'background',
-    beforeDraw: (chart) => {
-      if (chart.chartArea && bgImageRef.current) {
-        const { ctx, chartArea } = chart;
-        ctx.drawImage(bgImageRef.current, chartArea.left, chartArea.top, chartArea.width, chartArea.height);
-      }
-    }
-  };
-
-  const customPointPlugin = {
-    id: 'customPoint',
-    afterDraw: (chart) => {
-      const { ctx } = chart;
-      chart.data.datasets.forEach((dataset) => {
-        dataset.data.forEach((value, index) => {
-          const meta = chart.getDatasetMeta(0);
-          const point = meta.data[index];
-          if (point && cartImageRef.current) {
-            ctx.drawImage(cartImageRef.current, point.x - 15, point.y - 15, 30, 30);
-          }
-        });
-      });
-    }
-  };
-
-  useEffect(() => {
     // Update the chart to show the latest coordinate on initial load
     if (data.length > 0) {
       const lastIndex = data.length - 1;
@@ -146,13 +103,13 @@ const CartMovement = ({ data }) => {
               min: 0,
               max: 200,
               ticks: {
-                    display: false,
+                    display: true,
                 },
 
                 // to remove the x-axis grid
               grid: {
-                    drawBorder: false,
-                    display: false,
+                    drawBorder: true,
+                    display: true,
                 },
             },
             y: {
@@ -161,24 +118,24 @@ const CartMovement = ({ data }) => {
               min: 0,
               max: 250,
               ticks: {
-                    display: false,
+                    display: true,
                     beginAtZero: true,
                 },
                 // to remove the y-axis grid
               grid: {
-                    drawBorder: false,
-                    display: false,
+                    drawBorder: true,
+                    display: true,
                 },
             },
           },
           elements: {
             point: {
-              radius: 0
+              radius: 5,
+              backgroundColor: 'blue'
             }
           },
           animation: false
         }}
-        plugins={[backgroundPlugin, customPointPlugin]}
       />
       <div>
         <Slider

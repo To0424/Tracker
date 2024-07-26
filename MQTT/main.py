@@ -1,12 +1,13 @@
 # main.py
 import time
-from db import SessionLocal, fetch_data
+from db import SessionLocal, fetch_tags, fetch_data
 from mqtt_client import publish_data, stop_mqtt
 
 def first_publish():
     session = SessionLocal()
     try:
-        data_points = fetch_data(session)
+        tags = fetch_tags(session)
+        data_points = fetch_data(session, tags)
         publish_data(data_points)
     finally:
         session.close()
