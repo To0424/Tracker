@@ -1,14 +1,15 @@
 # main.py
 import time
-from db import SessionLocal, fetch_tags, fetch_data
+from db import SessionLocal, fetch_tags, fetch_latest_data
 from mqtt_client import publish_data, stop_mqtt
 
 def first_publish():
     session = SessionLocal()
     try:
-        tags = fetch_tags(session)
-        data_points = fetch_data(session, tags)
-        publish_data(data_points)
+        tag_ids = fetch_tags(session)
+        latest_data_points = fetch_latest_data(session, tag_ids)
+        for tag_id, point in latest_data_points.items():
+            publish_data([point])  # Publish only the latest data point for each tag
     finally:
         session.close()
 

@@ -6,7 +6,7 @@ const MQTT_BROKER = 'ws://broker.hivemq.com:8000/mqtt';
 const MQTT_TOPIC = 'cart/position';
 
 const App = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const client = mqtt.connect(MQTT_BROKER);
@@ -23,19 +23,15 @@ const App = () => {
     client.on('message', (topic, message) => {
       if (topic === MQTT_TOPIC) {
         const newData = JSON.parse(message.toString());
+        const { tag_id } = newData;
+
+        console.log('Received data:', newData);
 
         setData((prevData) => {
-          // Ensure newData is not already in the state
-          const exists = prevData.some(dataPoint => dataPoint.id === newData.id);
-
-          if (!exists) {
-            const updatedData = [...prevData, newData];
-            localStorage.setItem('cartData', JSON.stringify(updatedData));
-            console.log(updatedData);
-            return updatedData;
-          }
-
-          return prevData;
+          const updatedData = { ...prevData, [tag_id]: newData };
+          console.log('Updated data:', updatedData);
+          localStorage.setItem('cartData', JSON.stringify(updatedData));
+          return updatedData;
         });
       }
     });
@@ -51,7 +47,6 @@ const App = () => {
     <div>
       <h1>Data Points</h1>
       <CartMovement data={data} />
-      
     </div>
   );
 };
