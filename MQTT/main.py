@@ -1,4 +1,3 @@
-# main.py
 import time
 from db import SessionLocal, fetch_tags, fetch_latest_data
 from mqtt_client import publish_data, stop_mqtt
@@ -8,8 +7,8 @@ def first_publish():
     try:
         tag_ids = fetch_tags(session)
         latest_data_points = fetch_latest_data(session, tag_ids)
-        for tag_id, point in latest_data_points.items():
-            publish_data([point])  # Publish only the latest data point for each tag
+        # Ensure publish_data is called with the correct arguments
+        publish_data(list(latest_data_points.values()))  # Pass the list of data points
     finally:
         session.close()
 

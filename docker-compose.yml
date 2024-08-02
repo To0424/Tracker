@@ -1,0 +1,36 @@
+services:
+  mqtt:
+    build:
+      context: ./MQTT
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./MQTT:/app
+    environment:
+      - NAME=MQTTService
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./paper-dashboard-react
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./paper-dashboard-react:/app
+    environment:
+      - NODE_ENV=production
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 25613630
+      POSTGRES_DB: Coord
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

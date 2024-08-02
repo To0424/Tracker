@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-sqlmodel
-asyncpg
-sqlalchemy
-psycopg2-binary
-paho-mqtt
-requests
