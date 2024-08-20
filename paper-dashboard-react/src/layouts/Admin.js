@@ -11,7 +11,6 @@ import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 import routes from "routes.js";
 
 import CartMovement from "variables/CartMovement.js";  // Updated path
-import CartHistory from "variables/CartHistory.js";    // Updated path
 
 const MQTT_BROKER = 'ws://broker.hivemq.com:8000/mqtt';
 const MQTT_TOPIC = 'cart/position';

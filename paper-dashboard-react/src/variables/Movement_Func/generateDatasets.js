@@ -1,4 +1,4 @@
-import { roomItems } from './RoomItems';
+import { roomItems } from '../RoomItems';
 import { colors } from './constants';
 
 const createColoredIcon = (color) => {
