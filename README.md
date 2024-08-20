@@ -16,6 +16,7 @@ Within the download you'll find the following directories and files:
     │   ├── favicon.ico
     │   ├── index.html
     │   └── manifest.json
+    │   └── tag-icon.png
     └── src
         ├── index.js
         ├── logo-white.svg
@@ -29,6 +30,18 @@ Within the download you'll find the following directories and files:
         ├── layouts
         │   └── Admin.jsx
         ├── variables
+        │   └── History_Func
+        │       ├── HistoryChartOptions.js
+        │       ├── HistoryMapConpontent.js
+        │       ├── generateHistoryDatasets.js
+        │   └── Movement_Func
+        │       ├── ChartOptions.js
+        │       ├── constants.js
+        │       ├── generateDatasets.js
+        │       ├── MapComponent.js
+        │       ├── RoomItems.js
+        │       ├── RotationButtons.js
+        │       └── ZoomSilder.js
         │   ├── CartHistory.jsx
         │   ├── CartMovement.jsx
         │   ├── charts.jsx
@@ -36,7 +49,7 @@ Within the download you'll find the following directories and files:
         │   └── icons.jsx
         ├── views
         │   ├── Dashboard.jsx
-        │   ├── History.jsx
+        │   └── History.jsx
         └── assets
            ├── css
            │   ├── paper-dashboard.css

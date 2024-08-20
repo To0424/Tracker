@@ -10,6 +10,7 @@ const Dashboard = () => {
   const [data, setData] = useState({});
   const [selectedFloor, setSelectedFloor] = useState(1); // Default to floor 1
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [rotation, setRotation] = useState(0);
   const mqttClient = useRef(null);
 
   useEffect(() => {
@@ -53,6 +54,10 @@ const Dashboard = () => {
     setSelectedFloor(floor);
   };
 
+  const handleRotateLeft = () => setRotation((prevRotation) => (prevRotation - 90) % 360);
+  const handleRotateRight = () => setRotation((prevRotation) => (prevRotation + 90) % 360);
+  const handleResetRotation = () => setRotation(0);
+
   const floorCounts = Object.values(data).reduce((acc, item) => {
     acc[item.floor] = (acc[item.floor] || 0) + 1;
     return acc;
@@ -91,7 +96,13 @@ const Dashboard = () => {
       </Row>
       <Row>
         <Col md="12">
-          <CartMovement data={filteredData} selectedFloor={selectedFloor} />
+          <CartMovement 
+            data={filteredData} 
+            selectedFloor={selectedFloor} 
+            onRotateLeft={handleRotateLeft}
+            onRotateRight={handleRotateRight}
+            onResetRotation={handleResetRotation}
+          />
         </Col>
       </Row>
     </div>
