@@ -1,6 +1,7 @@
+import { roomItems, roomBoundary } from '../RoomItems';
 import { colors } from '../Movement_Func/constants';
-import { roomItems } from '../RoomItems';
 
+// Function to create a colored icon
 const createColoredIcon = (color) => {
   const size = 32; // Desired size for the data point image
   const canvas = document.createElement('canvas');
@@ -9,7 +10,7 @@ const createColoredIcon = (color) => {
   const ctx = canvas.getContext('2d');
 
   const icon = new Image();
-  icon.src = `${process.env.PUBLIC_URL}/tag-icon.png`;
+  icon.src = `${process.env.PUBLIC_URL}/tag-icon.png`;  // Path to your tag icon
 
   return new Promise((resolve) => {
     icon.onload = () => {
@@ -25,6 +26,7 @@ const createColoredIcon = (color) => {
     };
   });
 };
+
 
 export const generateHistoryDatasets = async (data) => {
   const dynamicDatasets = {};
@@ -74,7 +76,20 @@ export const generateHistoryDatasets = async (data) => {
     showInLegend: false,
   }));
 
+  // Include room boundary
+  const roomBoundaryDataset = {
+    label: roomBoundary.name,
+    data: roomBoundary.data,
+    borderColor: roomBoundary.borderColor,
+    backgroundColor: roomBoundary.backgroundColor,
+    showLine: roomBoundary.showLine,
+    fill: roomBoundary.fill,
+    borderWidth: roomBoundary.borderWidth,
+    pointRadius: roomBoundary.pointRadius,
+    showInLegend: roomBoundary.showInLegend,
+  };
+
   return {
-    datasets: [...Object.values(dynamicDatasets), ...staticDatasets],
+    datasets: [...Object.values(dynamicDatasets), ...staticDatasets, roomBoundaryDataset],
   };
 };

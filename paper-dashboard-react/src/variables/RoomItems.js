@@ -1,34 +1,40 @@
-// src/components/Movement_Func/RoomItems.js
+// src/shared/RoomItems.js
 
-// Define the fixed items in the room, such as tables, chairs, doors, etc.
 export const roomItems = [
-    {
-      name: 'Table', // Name of the item
-      type: 'table', // Type of the item, can be used for further customization
-      x: 200, // x-coordinate position of the top-left corner
-      y: 300, // y-coordinate position of the top-left corner
-      width: 100, // Width of the table
-      height: 50, // Height of the table
-      color: 'blue', // Color used to represent this item on the map
-    },
-    {
-      name: 'Door',
-      type: 'door',
-      x: 50,
-      y: 100,
-      width: 20, // Width of the door
-      height: 60, // Height of the door
-      color: 'brown',
-    },
-    {
-      name: 'Chair',
-      type: 'chair',
-      x: 400,
-      y: 350,
-      width: 40, // Width of the chair
-      height: 40, // Height of the chair
-      color: 'green',
-    },
-    // Add more items as needed
-  ];
-  
+  {
+    name: 'Table 1',
+    x: 200,
+    y: 300,
+    width: 100,
+    height: 50,
+    color: 'blue',
+  },
+  {
+    name: 'Chair 1',
+    x: 500,
+    y: 400,
+    width: 50,
+    height: 50,
+    color: 'red',
+  },
+  // Add other room items here...
+];
+
+// Room boundary as part of roomItems.js
+export const roomBoundary = {
+  name: 'Floor Plan',
+  data: [
+    { x: 0, y: 0 },
+    { x: 700, y: 0 },
+    { x: 700, y: 600 },
+    { x: 0, y: 600 },
+    { x: 0, y: 0 },  // Close the rectangle
+  ],
+  borderColor: 'black',
+  backgroundColor: 'rgba(0, 0, 0, 0)',
+  showLine: true,
+  fill: false,
+  borderWidth: 2,
+  pointRadius: 0,
+  showInLegend: false,
+};
