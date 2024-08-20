@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Scatter } from 'react-chartjs-2';
 import { generateHistoryDatasets } from './generateHistoryDatasets';
 import { getHistoryChartOptions } from './HistoryChartOptions';
 
 const HistoryMapComponent = ({ data, rotation, zoomLevel }) => {
-  const { datasets } = generateHistoryDatasets(data);
+  const [datasets, setDatasets] = useState([]);
+
+  useEffect(() => {
+    const fetchDatasets = async () => {
+      const generatedDatasets = await generateHistoryDatasets(data);
+      setDatasets(generatedDatasets.datasets);
+    };
+
+    fetchDatasets();
+  }, [data]);
+
   const options = getHistoryChartOptions(rotation, zoomLevel);
 
   return (

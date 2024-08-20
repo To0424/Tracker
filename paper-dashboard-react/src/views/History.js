@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import mqtt from 'mqtt';
-import { Row, Col, Button, Input, FormGroup, Label } from 'reactstrap';
+import React, { useState, useEffect } from 'react'; // Import React hooks
+import mqtt from 'mqtt'; // Import MQTT
+import { Row, Col, Button, Input, FormGroup, Label } from 'reactstrap'; // Import components from Reactstrap
 import RotationButtons from 'variables/Movement_Func/RotationButtons';
 import ZoomSlider from 'variables/Movement_Func/ZoomSlider';
 import HistoryMapComponent from '../variables/History_Func/HistoryMapComponent';
